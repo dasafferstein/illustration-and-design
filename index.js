@@ -1,135 +1,253 @@
-/* Delete comments (//) for Squarespace*/
-//<script type="text/javascript">
+//<script type="text/javascript"> // UNCOMMENT THIS LINE for Squarespace
 
+import "./css/squarespace-style.css";
+import "./css/style.css";
+  
+/* MIT License Copyright (c) 2021 Mike Vondrak
 
-// import stylesheet to have access to CSS vars
-import "./css/squarespace-style.css"; // REMOVE THIS LINE for Squarespace
-import "./css/style.css"; // REMOVE THIS LINE for Squarespace
+  Permission is hereby granted, free
+  of charge, to any person obtaining a copy of this software and associated
+  documentation files (the "Software"), to deal in the Software without
+  restriction, including without limitation the rights to use, copy, modify, merge,
+  publish, distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice
+  (including the next paragraph) shall be included in all copies or substantial
+  portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+  ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+  EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE. 
+*/
+
+// ===================================================================================================================
+// * EDIT BELOW - Project Configuration
+// ===================================================================================================================
+
+// Set this to match an "id" of a projectView below - this is what the site will display
+const projectsToDisplay = "UxUi"; // Only one of these should be active
+//const projectsToDisplay = "UxUi"; // Comment out the rest like this
+
+// Add new project views here - controls order of category buttons and order of project items
+const projectConfig = {
+  //
+  // These are the project selectors from the "projectList" below
+  // You can update these when you add new projects, this is just for your reference:
+  //
+  // ACuriousHarvest CohesionBrewing Conci EatItUp Guava
+  // HappyBikes HomeRemedy KnottyTieConfigurator KnottyTieRebrand
+  // Nod NorthWynkoop SpectrumIllustrationRebrand SpectrumUxUi
+  // TheDailyVegan WynkoopAlley
+  //
+  // Categoty selectors for reference
+  // a u b i p k => All, UX / UI, Branding, Illustration, Pattern, Books
+  //
+  projectViews: [
+    {
+      // You will need to add any new categories or projects to all of the definitions below for them to show up
+      // - You will need to make up an ID for any new projects you add, the strings just have to match
+      // - Put the ID of the project view you want to display in the "projectsToDisplay" variable above
+
+      // Alphabetical category and project order - for example
+      id: "Alphabetical",
+      categoryOrder: ["a", "k", "b", "i", "p", "u"],
+      projectOrder: [
+        "ACuriousHarvest",
+        "CohesionBrewing",
+        "Conci",
+        "EatItUp",
+        "Guava",
+        "HappyBikes",
+        "HomeRemedy",
+        "KnottyTieConfigurator",
+        "KnottyTieRebrand",
+        "Nod",
+        "NorthWynkoop",
+        "SpectrumIllustrationRebrand",
+        "SpectrumUxUi",
+        "TheDailyVegan",
+        "WynkoopAlley"
+      ]
+    },
+    {
+      // UX/UI - these are reverse alphabetical, you can change the order
+      id: "UxUi",
+      categoryOrder: ["a", "u", "i", "b", "p", "k"],
+      projectOrder: [
+        "KnottyTieConfigurator",
+        "NorthWynkoop",
+        "Conci",
+        "SpectrumUxUi",
+        "KnottyTieRebrand",
+        "SpectrumIllustrationRebrand",
+        "Nod",
+        "WynkoopAlley",
+        "CohesionBrewing",
+        "Guava",
+        "HappyBikes",
+        "ACuriousHarvest",
+        "HomeRemedy",
+        "EatItUp",
+        "TheDailyVegan"
+      ]
+    }
+  ]
+};
+
+// Add new categories here (lower nav)
+const projectTags = [
+  { display: "All", tag: "a" },
+  { display: "UX / UI", tag: "u" },
+  { display: "Branding", tag: "b" },
+  { display: "Illustration", tag: "i" },
+  { display: "Pattern", tag: "p" },
+  { display: "Books", tag: "k" }
+];
+
+// Add new projects here, then add the ID you created for the project to the projectViews above
+const projectList = [
+  {
+    selector: "NorthWynkoop",
+    title: "North Wynkoop",
+    url: "/projects/north-wynkoop",
+    imgSrc: "tile-north-wynkoop-uxui.png",
+    tags: ["a", "b", "u", "p"]
+  },
+  {
+    selector: "KnottyTieConfigurator",
+    title: "Knotty Tie Configurator",
+    url: "/projects/knotty-tie-configurator",
+    imgSrc: "tile-knotty-tie-configurator.jpg",
+    tags: ["a", "u"]
+  },
+  {
+    selector: "KnottyTieRebrand",
+    title: "Knotty Tie Rebrand",
+    url: "/projects/knotty-tie-rebrand",
+    imgSrc: "tile-knotty-tie-rebrand-uxui.png",
+    tags: ["a", "b", "i", "u"]
+  },
+  {
+    selector: "SpectrumUxUi",
+    title: "Spectrum UX&nbsp;/&nbsp;UI",
+    url: "/projects/spectrum-ux-ui",
+    imgSrc: "tile-spectrum-uxui.png",
+    tags: ["a", "b", "u"]
+  },
+  {
+    selector: "Conci",
+    title: "Conci",
+    url: "/projects/conci",
+    imgSrc: "tile-conci.png",
+    tags: ["a", "u"]
+  },
+  {
+    selector: "WynkoopAlley",
+    title: "Wynkoop Alley",
+    url: "/projects/wynkoop-alley",
+    imgSrc: "tile-wynkoop-alley.png",
+    tags: ["a", "b", "i", "p"]
+  },
+  {
+    selector: "CohesionBrewing",
+    title: "Cohesion Brewing",
+    url: "/projects/cohesion-brewing",
+    imgSrc: "tile-cohesion-brewing.gif",
+    tags: ["a", "b", "p"]
+  },
+  {
+    selector: "Guava",
+    title: "Guava",
+    url: "/projects/guava",
+    imgSrc: "tile-guava.gif",
+    tags: ["a", "b", "i"]
+  },
+  {
+    selector: "Nod",
+    title: "Nod",
+    url: "/projects/nod",
+    imgSrc: "tile-nod.jpg",
+    tags: ["a", "i", "p"]
+  },
+  {
+    selector: "HappyBikes",
+    title: "Happy Bikes",
+    url: "/projects/happy-bikes",
+    imgSrc: "tile-happy-bikes.jpg",
+    tags: ["a", "i", "p"]
+  },
+  {
+    selector: "EatItUp",
+    title: "Eat it Up!",
+    url: "/projects/eat-it-up",
+    imgSrc: "tile-eat-it-up.png",
+    tags: ["a", "i", "k"]
+  },
+  {
+    selector: "SpectrumIllustrationRebrand",
+    title: "Spectrum Illustration Rebrand",
+    url: "/projects/spectrum-illustration-rebrand",
+    imgSrc: "tile-spectrum-illustration-rebrand.png",
+    tags: ["a", "b", "i"]
+  },
+  {
+    selector: "ACuriousHarvest",
+    title: "A Curious Harvest",
+    url: "/projects/a-curious-harvest",
+    imgSrc: "tile-a-curious-harvest.png",
+    tags: ["a", "k", "i"]
+  },
+  {
+    selector: "HomeRemedy",
+    title: "Home Remedy",
+    url: "/projects/home-remedy",
+    imgSrc: "tile-home-remedy.png",
+    tags: ["a", "i", "k"]
+  },
+  {
+    selector: "TheDailyVegan",
+    title: "The Daily Vegan",
+    url: "/projects/the-daily-vegan",
+    imgSrc: "tile-the-daily-vegan.gif",
+    tags: ["a", "k", "i"]
+  }
+];
+
+// ===================================================================================================================
+// End Configuration - DO NOT EDIT BELOW HERE
+// ===================================================================================================================
+// ===================================================================================================================
+//
+//
+//
+//
+//
+//
+//
+// TODO: CORS and MIME type issues trying to import or fetch JSON, have to hardcode
+//import * as projectData from "./s/Base_Data.json";
+//import * as projectConfig from "./s/Project_Config.json";
 
 // *********************************************************
 // Main app class
 class AnimatedProjectList {
-  // *********************************************************
-  // Project Configuration - ENTER YOUR PROJECTS HERE
-  // *********************************************************
-  projectTags = {
-    All: "a",
-    Branding: "b",
-    Illustration: "i",
-    "UX/UI": "u",
-    Pattern: "p",
-    Books: "k"
-  };
+  // categories of projects and associated character "tag" for use in config file
+  // populated from /s/Base_Data.json
+  projectTags = [];
 
-  // define the projects that will be displayed in the list
-  // NOTE: ALWAYS include the "a" tag for ALL
-  projectList = [
-    {
-      selector: "WynkoopAlley",
-      title: "Wynkoop Alley",
-      url: "/projects/wynkoop-alley",
-      imgSrc: "tile-wynkoop-alley.png",
-      tags: ["a", "b", "i", "p"]
-    },
-    {
-      selector: "CohesionBrewing",
-      title: "Cohesion Brewing",
-      url: "/projects/cohesion-brewing",
-      imgSrc: "tile-cohesion-brewing.gif",
-      tags: ["a", "b", "p"]
-    },
-    {
-      selector: "NorthWynkoop",
-      title: "North Wynkoop",
-      url: "/projects/north-wynkoop",
-      imgSrc: "tile-north-wynkoop.jpg",
-      tags: ["a", "b", "u", "p"]
-    },
-    {
-      selector: "Guava",
-      title: "Guava",
-      url: "/projects/guava",
-      imgSrc: "tile-guava.gif",
-      tags: ["a", "b", "i"]
-    },
-    {
-      selector: "Nod",
-      title: "Nod",
-      url: "/projects/nod",
-      imgSrc: "tile-nod.jpg",
-      tags: ["a", "i", "p"]
-    },
-    {
-      selector: "HappyBikes",
-      title: "Happy Bikes",
-      url: "/projects/happy-bikes",
-      imgSrc: "tile-happy-bikes.jpg",
-      tags: ["a", "i", "p"]
-    },
-    {
-      selector: "KnottyTieConfigurator",
-      title: "Knotty Tie Configurator",
-      url: "/projects/knotty-tie-configurator",
-      imgSrc: "tile-knotty-tie-configurator.jpg",
-      tags: ["a", "u"]
-    },
-    {
-      selector: "EatItUp",
-      title: "Eat it Up!",
-      url: "/projects/eat-it-up",
-      imgSrc: "tile-eat-it-up.png",
-      tags: ["a", "i", "k"]
-    },
-    {
-      selector: "KnottyTieRebrand",
-      title: "Knotty Tie Rebrand",
-      url: "/projects/knotty-tie-rebrand",
-      imgSrc: "tile-knotty-tie-rebrand.png",
-      tags: ["a", "b", "i", "u"]
-    },
-    {
-      selector: "SpectrumIllustrationRebrand",
-      title: "Spectrum Illustration Rebrand",
-      url: "/projects/spectrum-illustration-rebrand",
-      imgSrc: "tile-spectrum-illustration-rebrand.png",
-      tags: ["a", "b", "i"]
-    },
-    {
-      selector: "SpectrumUxUi",
-      title: "Spectrum UX / UI",
-      url: "/projects/spectrum-ux-ui",
-      imgSrc: "tile-spectrum-uxui.png",
-      tags: ["a", "b", "u"]
-    },
-    {
-      selector: "ACuriousHarvest",
-      title: "A Curious Harvest",
-      url: "/projects/a-curious-harvest",
-      imgSrc: "tile-a-curious-harvest.png",
-      tags: ["a", "k", "i"]
-    },
-    {
-      selector: "HomeRemedy",
-      title: "Home Remedy",
-      url: "/projects/home-remedy",
-      imgSrc: "tile-home-remedy.png",
-      tags: ["a", "i", "k"]
-    },
-    {
-      selector: "TheDailyVegan",
-      title: "The Daily Vegan",
-      url: "/projects/the-daily-vegan",
-      imgSrc: "tile-the-daily-vegan.gif",
-      tags: ["a", "k", "i"]
-    },
-    {
-      selector: "Conci",
-      title: "Conci",
-      url: "/projects/conci",
-      imgSrc: "tile-conci.png",
-      tags: ["a", "u"]
-    }
-  ];
+  // projects available to be displayed in the list
+  // populated from /s/Base_Data.json
+  projectList = [];
+
+  // project display configurations
+  // populated from /s/Project_Config.json
+  projectConfig = {};
 
   // *********************************************************
   // Site Configuration
@@ -144,10 +262,6 @@ class AnimatedProjectList {
     { name: "xxxl", size: 1440, cols: 3 },
     { name: "hd", size: 1920, cols: 3 }
   ];
-
-  // *********************************************************
-  // End Configuration - DO NOT EDIT BELOW HERE
-  // *********************************************************
 
   imgSrcBaseUrl = "https://blue-helicon-3bfm.squarespace.com/"; // overridden by CSS variable
   imgSrcUrlJoiner = "s/"; // path where Squarespace stores uploaded images
@@ -169,7 +283,8 @@ class AnimatedProjectList {
   htmlIds = {
     app: "Animated-Project-List",
     list: "Animated-List",
-    filters: "List-Filters"
+    filters: "List-Filters",
+    filterBtn: "List-Filter-"
   };
   htmlNames = {};
   cssClasses = {
@@ -192,9 +307,11 @@ class AnimatedProjectList {
   // *********************************************************
   // vars
   // *********************************************************
+  debug = false;
   throttled = false;
   throttleTime = 250;
   currentBreakpoint = this.breakpoints.find(bp => bp.name === "xs");
+  currentProjectView = {};
   displayList = [];
 
   appEl = {};
@@ -226,24 +343,22 @@ class AnimatedProjectList {
   /**
    * Constructor
    */
-  constructor() {
-    this.initialize();
-
+  constructor(projectConfig, baseData) {
+    this.initialize(projectConfig, baseData);
     this.calcBreakpoint();
-
     this.refreshGrid();
-
-    // adjust height of list container
-    //this.updateListHeight();
-
-    //this.sortProjectsByTag("a");
-    //this.handleResize();
   }
 
   /**
    * First-time creation and init logic
    */
-  initialize() {
+  initialize(config, data) {
+    // load projects from JSON files uploaded to Squarespace
+    this.loadProjectsData(config, data);
+
+    // sort the projects according to the config defined by projectsToDisplay var
+    this.doInitialProjectSort();
+
     // get configuration settings from custom CSS we added to Squarespace
     this.populateCssVariables();
 
@@ -266,6 +381,43 @@ class AnimatedProjectList {
     // attach event handlers for filter buttons and window resize
     this.addEventHandlers();
   }
+  /**
+   * Load projects data from local JSON file
+   */
+  loadProjectsData(projectConfig, projectData) {
+    this.log("Loading Project Data: ");
+    this.log(projectData);
+    this.log(projectConfig);
+    this.projectList = projectData.projectList;
+    this.projectTags = projectData.projectTags;
+    this.projectConfig = projectConfig;
+  }
+
+  /**
+   * Perform initial sort to match config in use
+   */
+  doInitialProjectSort() {
+    this.currentProjectView = this.projectConfig.projectViews.find(
+      view => view.id === projectsToDisplay
+    );
+    if (!this.currentProjectView) {
+      throw new Error(
+        "Could not find project ID: " +
+          projectsToDisplay +
+          ", make sure the projectsToDisplay variable at the top of this file matches one of the 'id' values from Project_Config.json"
+      );
+    }
+    this.log("Current View: " + this.currentProjectView.id);
+
+    // sort the projects by comparing index found in the config projectOrder array
+    this.projectList.sort((a, b) => {
+      return (
+        this.currentProjectView.projectOrder.indexOf(a.selector) -
+        this.currentProjectView.projectOrder.indexOf(b.selector)
+      );
+    });
+  }
+
   /**
    * Get CSS variables defined in body of custom CSS in Squarespace
    */
@@ -294,14 +446,14 @@ class AnimatedProjectList {
    */
   verifyRequirements(appEl, list, tags) {
     if (!appEl) {
-      console.log("Error: could not find element with ID #" + this.htmlIds.app);
+      this.log("Error: could not find element with ID #" + this.htmlIds.app);
       return false;
     }
-    if (!list) {
+    if (!list || list.length === 0) {
       appEl.innerHTML = "<p>No list data provided</p>";
       return false;
     }
-    if (!tags) {
+    if (!tags || tags.length === 0) {
       appEl.innerHTML = "<p>No filter data provided</p>";
       return false;
     }
@@ -354,10 +506,10 @@ class AnimatedProjectList {
 
     filterButtons.forEach((btn, idx) => {
       btn.addEventListener("click", () => {
-        const tag = Object.keys(this.projectTags).find(key => key === btn.id);
-        const tagId = this.projectTags[tag];
+        // find the tag that matches the ID on the button that was clicked
+        const tag = this.getTagForFilterButtonId(btn.id);
         this.updateFilterButtonState(btn.id);
-        this.sortProjectsByTag(tagId);
+        this.sortProjectsByTag(tag.tag);
       });
     });
 
@@ -365,14 +517,25 @@ class AnimatedProjectList {
     let resizeFunction = this.handleResize.bind(this);
     window.addEventListener("resize", resizeFunction);
   }
+
+  /**
+   * Get tag for ID
+   */
+  getTagForFilterButtonId(id) {
+    const filterBtnPrefix = this.htmlIds.filterBtn;
+    const tag = this.projectTags.find(pt => filterBtnPrefix + pt.tag === id);
+    return tag;
+  }
+
   /**
    * Add / remove the "selected" class from the active filter button
    */
   updateFilterButtonState(selectedBtnId) {
     // iterate through buttons and remove selected class
-    Object.keys(this.projectTags).forEach(tag => {
-      const btnEl = document.getElementById(tag);
-      if (tag === selectedBtnId) {
+    this.projectTags.forEach(tag => {
+      const btnId = this.htmlIds.filterBtn + tag.tag;
+      const btnEl = document.getElementById(btnId);
+      if (btnId === selectedBtnId) {
         btnEl.classList.add("selected");
       } else {
         btnEl.classList.remove("selected");
@@ -386,13 +549,8 @@ class AnimatedProjectList {
     if (!this.throttled) {
       this.throttled = true;
       setTimeout(() => {
-        console.log("############# HANDLE RESIZE");
-
-        if (this.calcBreakpoint()) {
-          console.log("Recalculate number of columns for new breakpoint");
-          //this.refreshGrid();
-        }
-
+        this.log("Handle Window Resize");
+        this.calcBreakpoint();
         this.refreshGrid();
 
         this.throttled = false;
@@ -404,7 +562,7 @@ class AnimatedProjectList {
    * Set breakpoint for current screen width and return true if changed
    */
   calcBreakpoint() {
-    console.log("calc bp start:", this.currentBreakpoint);
+    this.log("Starting Breakpoint:", this.currentBreakpoint);
     let breakpointChanged = false;
     const winWidth = window.innerWidth;
     if (!this.breakpoints || !Array.isArray(this.breakpoints)) {
@@ -417,9 +575,11 @@ class AnimatedProjectList {
       }
     });
     breakpointChanged = this.currentBreakpoint.name !== prevBpName;
-    console.log("*********** WIDTH:" + winWidth + ", CURRENT BREAKPOINT: ");
-    console.log(this.currentBreakpoint);
-    console.log("Changed: " + breakpointChanged);
+    this.log("Window innerWidth:" + winWidth);
+    this.log("Breakpoint Changed: " + breakpointChanged);
+    if (breakpointChanged) {
+      this.log(this.currentBreakpoint);
+    }
     return breakpointChanged;
   }
 
@@ -654,10 +814,24 @@ class AnimatedProjectList {
    */
   buildFilterButtons(filterList) {
     let buttons = "";
-    let keys = Object.keys(filterList);
-    keys.forEach((filter, index) => {
+
+    // sort the project categories according to the current configuration
+    filterList.sort((a, b) => {
+      return (
+        this.currentProjectView.categoryOrder.indexOf(a.tag) -
+        this.currentProjectView.categoryOrder.indexOf(b.tag)
+      );
+    });
+
+    filterList.forEach((filter, index) => {
+      const btnId = this.htmlIds.filterBtn + filter.tag;
       const btnClass = index === 0 ? "selected" : "";
-      const markup = this.generateElement("button", filter, btnClass, filter);
+      const markup = this.generateElement(
+        "button",
+        btnId,
+        btnClass,
+        filter.display
+      );
       buttons += markup;
     });
     return buttons;
@@ -783,37 +957,47 @@ class AnimatedProjectList {
     markup += addCloseTag && !selfClosing ? "</" + tag + ">" : "";
     return markup;
   }
+
+  log(message) {
+    if (this.debugOutput) {
+      console.log(message);
+    }
+  }
 }
 
 // *********************************************************
 // *********************************************************
 // *********************************************************
 // App Initialization
-console.log("Initialzing...");
+console.log("Creating Animated List...");
 var mainApp;
+const baseData = {
+  projectTags,
+  projectList
+};
 
 if (window.Squarespace) {
-  console.log("Detected Squarespace");
+  console.log("Initializing for Squarespace");
   window.Squarespace.onInitialize(Y, () => {
     // check if we're loading the Home page
     const animatedList = document.getElementById("Animated-Project-List");
     if (!!animatedList) {
       // TODO - refactor the code to be able just call init function if AJAX call is reloading page rather than recreate
       if (mainApp) {
-        console.log("APP ALREADY CREATED");
-        mainApp = new AnimatedProjectList();
+        // console.log("APP ALREADY CREATED");
+        mainApp = new AnimatedProjectList(projectConfig, baseData);
       } else {
-        console.log("CREATING NEW APP");
-        mainApp = new AnimatedProjectList();
+        // console.log("CREATING NEW APP");
+        mainApp = new AnimatedProjectList(projectConfig, baseData);
       }
     }
   });
 } else {
-  console.log("No Squarespace detected, normal init");
-  mainApp = new AnimatedProjectList();
+  console.log("Squarespace not detected");
+  mainApp = new AnimatedProjectList(projectConfig, baseData);
 }
 
-console.log("!!!!!!!!!!!!!! APP INITIALIZED");
+console.log("Initialization Complete!");
 
-/* Delete comments (//) for Squarespace*/
+// UNCOMMENT THE LINE BELOW for Squarespace
 //</script>
